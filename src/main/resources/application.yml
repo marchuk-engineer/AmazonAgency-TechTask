@@ -2,3 +2,7 @@ spring:
   data:
     mongodb:
       uri: 'mongodb://localhost:27017/amazon-agency'
+jwt:
+  secret: ultra-insecure-secret
+  access-token-expiration-seconds: '1440'
+  refresh-token-expiration-seconds: '86400'
