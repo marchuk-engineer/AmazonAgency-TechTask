@@ -53,6 +53,13 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate.ogm</groupId>
+			<artifactId>hibernate-ogm-mongodb</artifactId>
+			<version>5.4.1.Final</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
