@@ -1,10 +1,18 @@
 package com.agencyamazon.entity;
 
-import javax.persistence.*;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "data", schema = "amazon-agency", catalog = "")
-@lombok.Data
+import javax.persistence.Basic;
+import javax.persistence.Column;
+
+@Document(collection = "data")
+@Setter
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Data {
     @Column(name = "_id", nullable = false)
     @Id
