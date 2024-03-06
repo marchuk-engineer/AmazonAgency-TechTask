@@ -21,7 +21,7 @@ public class SignUpController {
 
     private final SignUpService signUpService;
 
-    @PostMapping(path = "/signup")
+    @PostMapping(path = "/sign-up")
     public ResponseEntity<?> signUp(HttpServletRequest request, HttpServletResponse response, @Valid @RequestBody RegistrationUserDto dto) throws UserAlreadyExistAuthenticationException {
         signUpService.addUser(dto);
         return ResponseEntity.ok().body("User has been registered");

@@ -31,7 +31,8 @@ public class WebSecurityConfiguration {
 
     private final UserDetailsService userDetailsService;
     private static final String[] PUBLIC_PATHS = {
-            "/signup"
+            "/sign-up",
+            "/sign-in"
     };
 
     @Bean
