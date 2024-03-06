@@ -15,3 +15,6 @@ logging:
       springframework:
         web: debug
         security: trace
+server:
+  servlet:
+    context-path: /amazon
