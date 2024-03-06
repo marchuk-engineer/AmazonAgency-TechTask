@@ -4,7 +4,7 @@ import com.agencyamazon.api.dto.RegistrationUserDto;
 import com.agencyamazon.entity.User;
 import com.agencyamazon.repository.UserRepository;
 import com.agencyamazon.service.SignUpService;
-import exception.UserAlreadyExistAuthenticationException;
+import com.agencyamazon.exception.UserAlreadyExistAuthenticationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

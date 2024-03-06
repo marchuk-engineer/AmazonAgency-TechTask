@@ -1,8 +1,8 @@
-package com.agencyamazon.config;
+package com.agencyamazon.exception;
 
-import exception.ErrorItem;
-import exception.PasswordNotMatchesException;
-import exception.UserAlreadyExistAuthenticationException;
+import com.agencyamazon.exception.ErrorItem;
+import com.agencyamazon.exception.PasswordNotMatchesException;
+import com.agencyamazon.exception.UserAlreadyExistAuthenticationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

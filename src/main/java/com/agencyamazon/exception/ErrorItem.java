@@ -1,4 +1,4 @@
-package exception;
+package com.agencyamazon.exception;
 
 import lombok.Data;
 

@@ -1,7 +1,7 @@
 package com.agencyamazon.annotation;
 
 import com.agencyamazon.api.dto.RegistrationUserDto;
-import exception.PasswordNotMatchesException;
+import com.agencyamazon.exception.PasswordNotMatchesException;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

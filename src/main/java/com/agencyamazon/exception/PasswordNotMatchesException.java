@@ -1,4 +1,4 @@
-package exception;
+package com.agencyamazon.exception;
 
 import jakarta.validation.ConstraintDeclarationException;
 

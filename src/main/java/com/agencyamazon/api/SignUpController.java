@@ -2,7 +2,7 @@ package com.agencyamazon.api;
 
 import com.agencyamazon.api.dto.RegistrationUserDto;
 import com.agencyamazon.service.SignUpService;
-import exception.UserAlreadyExistAuthenticationException;
+import com.agencyamazon.exception.UserAlreadyExistAuthenticationException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;

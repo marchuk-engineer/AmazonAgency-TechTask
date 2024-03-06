@@ -1,4 +1,4 @@
-package exception;
+package com.agencyamazon.exception;
 
 import org.springframework.security.core.AuthenticationException;
 
