@@ -14,5 +14,5 @@ public class RegistrationUserDto {
     @NonNull
     private String password;
     @NonNull
-    private String repeatedPassword;
+    private String confirmPassword;
 }

@@ -1,5 +1,6 @@
 package com.agencyamazon.annotation;
 
+import com.agencyamazon.api.dto.RegistrationUserDto;
 import exception.PasswordNotMatchesException;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -15,17 +16,12 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
 
     @Override
     public boolean isValid(Object obj, ConstraintValidatorContext context) {
-        ConfirmPasswordUtil userDto = (ConfirmPasswordUtil) obj;
-        if (userDto.getPassword().equals(userDto.getRepeatedPassword())) {
+        RegistrationUserDto userDto = (RegistrationUserDto) obj;
+        if (userDto.getPassword().equals(userDto.getConfirmPassword())) {
             return true;
         }
         throw new PasswordNotMatchesException(defaultValidationMessage);
     }
 
-    interface ConfirmPasswordUtil {
-        String getPassword();
-
-        String getRepeatedPassword();
-    }
 }
 
