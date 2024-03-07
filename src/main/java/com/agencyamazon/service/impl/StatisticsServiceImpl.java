@@ -4,21 +4,32 @@ import com.agencyamazon.entity.Data;
 import com.agencyamazon.repository.DataRepository;
 import com.agencyamazon.service.StatisticsService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.json.JSONObject;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
-// TODO: Review all four methods and refactor to get rid of Cognitive Complexity , also to speed performance up.
+@CacheConfig(cacheNames = {"SalesAndTrafficByDate", "salesAndTrafficByAsin", "summaryStatisticsByDate", "summaryStatisticsByAsin"})
+// TODO: Review all four methods and refactor to get rid of Cognitive Complexity , also to speed performance up.TimeUnit.SECONDS.sleep(1); to show cache work
 public class StatisticsServiceImpl implements StatisticsService {
+
+    public static final String DATE = "date";
+    public static final String PARENT_ASIN = "parentAsin";
 
     private final DataRepository dataRepository;
 
     @Override
+    @Cacheable(unless = "#result == null")
+    @SneakyThrows
     public String getSalesAndTrafficByDate(String date) {
-        List<Data> data = dataRepository.findAll();
+        TimeUnit.SECONDS.sleep(1);
+        List<Data> data = dataRepository.findByReportSpecificationMarketplaceIds("ATVPDKIKX0DER");
         Optional<Object> any = data.stream().map(Data::getSalesAndTrafficByDate).findAny();
         if (any.isPresent()) {
             List<LinkedHashMap<String, String>> linkedHashMaps = (List<LinkedHashMap<String, String>>) any.get();
@@ -28,7 +39,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
                     String key = entry.getKey();
                     Object value = entry.getValue();
-                    if (key.equals("date") && (value.equals(date))) {
+                    if (key.equals(DATE) && (value.equals(date))) {
                         return new JSONObject(linkedHashMap).toString();
                     }
                 }
@@ -38,8 +49,11 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
     @Override
+    @Cacheable(unless = "#result == null")
+    @SneakyThrows
     public String salesAndTrafficByAsin(String asin) {
-        List<Data> data = dataRepository.findAll();
+        TimeUnit.SECONDS.sleep(1);
+        List<Data> data = dataRepository.findByReportSpecificationMarketplaceIds("ATVPDKIKX0DER");
         Optional<Object> any = data.stream().map(Data::getSalesAndTrafficByAsin).findAny();
         if (any.isPresent()) {
             List<LinkedHashMap<String, String>> linkedHashMaps = (List<LinkedHashMap<String, String>>) any.get();
@@ -49,7 +63,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
                     String key = entry.getKey();
                     Object value = entry.getValue();
-                    if (key.equals("parentAsin") && (value.equals(asin))) {
+                    if (key.equals(PARENT_ASIN) && (value.equals(asin))) {
                         return new JSONObject(linkedHashMap).toString();
                     }
                 }
@@ -59,9 +73,12 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
     @Override
+    @Cacheable(unless = "#result == null")
+    @SneakyThrows
     public String summaryStatisticsByDate() {
-        List<Data> dataList = dataRepository.findAll();
-        Optional<Object> any = dataList.stream().map(Data::getSalesAndTrafficByDate).findAny();
+        TimeUnit.SECONDS.sleep(1);
+        List<Data> data = dataRepository.findByReportSpecificationMarketplaceIds("ATVPDKIKX0DER");
+        Optional<Object> any = data.stream().map(Data::getSalesAndTrafficByDate).findAny();
 
         if (any.isPresent()) {
             JSONObject sumJsonObject = new JSONObject();
@@ -105,9 +122,12 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
     @Override
+    @Cacheable(unless = "#result == null")
+    @SneakyThrows
     public String summaryStatisticsByAsin() {
-        List<Data> dataList = dataRepository.findAll();
-        Optional<Object> any = dataList.stream().map(Data::getSalesAndTrafficByAsin).findAny();
+        TimeUnit.SECONDS.sleep(1);
+        List<Data> data = dataRepository.findByReportSpecificationMarketplaceIds("ATVPDKIKX0DER");
+        Optional<Object> any = data.stream().map(Data::getSalesAndTrafficByAsin).findAny();
 
         if (any.isPresent()) {
             JSONObject sumJsonObject = new JSONObject();
